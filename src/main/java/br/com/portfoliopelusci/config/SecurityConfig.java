@@ -1,6 +1,5 @@
 package br.com.portfoliopelusci.config;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,32 +27,31 @@ public class SecurityConfig {
 
 	@Autowired
 	private JwtTokenProvider tokenProvider;
-	
+
 	@Bean
 	PasswordEncoder passwordEncoder() {
 		Map<String, PasswordEncoder> encoders = new HashMap<>();
-				
+
 		Pbkdf2PasswordEncoder pbkdf2Encoder = new Pbkdf2PasswordEncoder("", 8, 185000,
-                SecretKeyFactoryAlgorithm.PBKDF2WithHmacSHA256);
+				SecretKeyFactoryAlgorithm.PBKDF2WithHmacSHA256);
 		encoders.put("pbkdf2", pbkdf2Encoder);
 		DelegatingPasswordEncoder passwordEncoder = new DelegatingPasswordEncoder("pbkdf2", encoders);
 		passwordEncoder.setDefaultPasswordEncoderForMatches(pbkdf2Encoder);
 		return passwordEncoder;
 	}
-	
-    @Bean
-    AuthenticationManager authenticationManagerBean(
-    		AuthenticationConfiguration authenticationConfiguration)
-            throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
 
-    @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        
-        JwtTokenFilter customFilter = new JwtTokenFilter(tokenProvider);
-        
-        //@formatter:off
+	@Bean
+	AuthenticationManager authenticationManagerBean(AuthenticationConfiguration authenticationConfiguration)
+			throws Exception {
+		return authenticationConfiguration.getAuthenticationManager();
+	}
+
+	@Bean
+	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+		JwtTokenFilter customFilter = new JwtTokenFilter(tokenProvider);
+
+		//@formatter:off
         return http
             .httpBasic(basic -> basic.disable())
             .csrf(csrf -> csrf.disable())
@@ -74,5 +72,5 @@ public class SecurityConfig {
             .cors(cors -> {})
                 .build();
         //@formatter:on
-    }
+	}
 }

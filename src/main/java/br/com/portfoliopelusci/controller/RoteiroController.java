@@ -14,15 +14,15 @@ import br.com.portfoliopelusci.service.RoteiroServices;
 @RestController
 @RequestMapping("/api/roteiro/v1")
 public class RoteiroController {
-	
+
 	@Autowired
 	private RoteiroServices service;
-	
+
 	@GetMapping(path = "/{id}")
 	public Roteiro findAll(@PathVariable(value = "id") Long id) {
 		return service.findById(id).get();
 	}
-	
+
 	@PostMapping(path = "/enviarRoteiro")
 	public Roteiro create(@RequestBody Roteiro roteiro) {
 		return service.create(roteiro);

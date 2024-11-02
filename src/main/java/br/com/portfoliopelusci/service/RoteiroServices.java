@@ -13,7 +13,7 @@ import br.com.portfoliopelusci.repository.RoteiroRepository;
 public class RoteiroServices {
 	@Autowired
 	RoteiroRepository repository;
-	
+
 	public List<Roteiro> findAll() {
 		return repository.findAll();
 	}

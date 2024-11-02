@@ -13,12 +13,7 @@ public class OpenApiConfig {
 	@Bean
 	public OpenAPI custonOpenAPI() {
 		return new OpenAPI()
-				.info(new Info()
-						.title("Teste eureka")
-						.version("v1")
-						.description("Some description about your API")
-						.termsOfService("1")
-						.license(new License().name("Apache 2.0")
-								.url("2")));
+				.info(new Info().title("Teste eureka").version("v1").description("Some description about your API")
+						.termsOfService("1").license(new License().name("Apache 2.0").url("2")));
 	}
 }

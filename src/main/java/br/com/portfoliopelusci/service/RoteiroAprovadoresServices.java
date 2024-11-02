@@ -12,12 +12,10 @@ import br.com.portfoliopelusci.repository.RoteiroAprovadosRepository;
 public class RoteiroAprovadoresServices {
 	@Autowired
 	RoteiroAprovadosRepository repository;
-	
+
 	public List<RoteiroAprovadores> findAll() {
-		
+
 		return repository.findAll();
 	}
 
-	
-	
 }

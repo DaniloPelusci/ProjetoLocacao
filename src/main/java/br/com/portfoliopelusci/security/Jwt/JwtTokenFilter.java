@@ -1,6 +1,5 @@
 package br.com.portfoliopelusci.security.Jwt;
 
-
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +13,11 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 
-public class JwtTokenFilter extends GenericFilterBean{
+public class JwtTokenFilter extends GenericFilterBean {
 
 	@Autowired
 	private JwtTokenProvider tokenProvider;
-	
+
 	public JwtTokenFilter(JwtTokenProvider tokenProvider) {
 		this.tokenProvider = tokenProvider;
 	}
@@ -33,6 +32,6 @@ public class JwtTokenFilter extends GenericFilterBean{
 				SecurityContextHolder.getContext().setAuthentication(auth);
 			}
 		}
-		chain.doFilter(request, response);		
+		chain.doFilter(request, response);
 	}
 }

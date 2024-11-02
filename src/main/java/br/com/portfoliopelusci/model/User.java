@@ -1,6 +1,5 @@
 package br.com.portfoliopelusci.model;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,44 +30,44 @@ public class User implements UserDetails, Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "user_name", unique = true)
 	private String userName;
-	
+
 	@Column(name = "NOME")
 	private String fullName;
-	
+
 	@Column(name = "EMAIL")
 	private String email;
-	
+
 	@Column(name = "password")
 	private String password;
-	
+
 	@Column(name = "account_non_expired")
 	private Boolean accountNonExpired;
-	
+
 	@Column(name = "account_non_locked")
 	private Boolean accountNonLocked;
-	
+
 	@Column(name = "credentials_non_expired")
 	private Boolean credentialsNonExpired;
-	
+
 	@Column(name = "enabled")
 	private Boolean enabled;
-	
+
 	@OneToMany(orphanRemoval = false, mappedBy = "analista", fetch = FetchType.LAZY)
 	private List<Roteiro> roteirosAnalisados;
-	
+
 	@OneToMany(orphanRemoval = false, mappedBy = "revisor", fetch = FetchType.LAZY)
 	private List<Roteiro> roteirosRevisados;
-	
+
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "user_permission", joinColumns = {@JoinColumn (name = "id_user")},
-		inverseJoinColumns = {@JoinColumn (name = "id_permission")}
-	)
+	@JoinTable(name = "user_permission", joinColumns = { @JoinColumn(name = "id_user") }, inverseJoinColumns = {
+			@JoinColumn(name = "id_permission") })
 	private List<Permission> permissions;
-	
-	public User() {}
+
+	public User() {
+	}
 
 	public List<String> getRoles() {
 		List<String> roles = new ArrayList<>();
@@ -213,5 +212,4 @@ public class User implements UserDetails, Serializable {
 				&& Objects.equals(userName, other.userName);
 	}
 
-	
 }

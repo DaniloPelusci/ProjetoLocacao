@@ -1,6 +1,5 @@
 package br.com.portfoliopelusci.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +23,7 @@ public class AuthController {
 
 	@Autowired
 	AuthServices authServices;
-	
+
 	@SuppressWarnings("rawtypes")
 	@Operation(summary = "Authenticates a user and returns a token")
 	@PostMapping(value = "/signin")
@@ -32,10 +31,11 @@ public class AuthController {
 		if (checkIfParamsIsNotNull(data))
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");
 		var token = authServices.signin(data);
-		if (token == null) return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");
+		if (token == null)
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");
 		return token;
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	@Operation(summary = "Refresh token for authenticated user and returns a token")
 	@PutMapping(value = "/refresh/{username}")
@@ -44,17 +44,17 @@ public class AuthController {
 		if (checkIfParamsIsNotNull(username, refreshToken))
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");
 		var token = authServices.refreshToken(username, refreshToken);
-		if (token == null) return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");
+		if (token == null)
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");
 		return token;
 	}
 
 	private boolean checkIfParamsIsNotNull(String username, String refreshToken) {
-		return refreshToken == null || refreshToken.isBlank() ||
-				username == null || username.isBlank();
+		return refreshToken == null || refreshToken.isBlank() || username == null || username.isBlank();
 	}
 
 	private boolean checkIfParamsIsNotNull(AccountCredentialsVO data) {
-		return data == null || data.getUsername() == null || data.getUsername().isBlank()
-				 || data.getPassword() == null || data.getPassword().isBlank();
+		return data == null || data.getUsername() == null || data.getUsername().isBlank() || data.getPassword() == null
+				|| data.getPassword().isBlank();
 	}
 }

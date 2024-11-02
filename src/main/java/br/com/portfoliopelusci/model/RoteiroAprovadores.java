@@ -1,6 +1,5 @@
 package br.com.portfoliopelusci.model;
 
-
 import java.io.Serializable;
 
 import jakarta.persistence.Column;
@@ -17,19 +16,20 @@ import jakarta.persistence.Table;
 public class RoteiroAprovadores implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(name = "idroteiro")
 	private Roteiro roteiro;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "idUsuario")
 	private User aprovador;
-	
-	public RoteiroAprovadores() {}
+
+	public RoteiroAprovadores() {
+	}
 
 	public Long getId() {
 		return id;
@@ -61,7 +61,5 @@ public class RoteiroAprovadores implements Serializable {
 		this.roteiro = roteiro;
 		this.aprovador = aprovador;
 	}
-	
-	
 
 }

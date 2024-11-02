@@ -1,6 +1,5 @@
 package br.com.portfoliopelusci.model;
 
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -25,40 +24,33 @@ public class Roteiro implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 
-
-	
 	@ManyToOne
 	@JoinColumn(name = "idAnalista")
 	private User analista;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "IDREVISOR")
 	private User revisor;
-	
+
 	@Column(name = "texto")
 	private String texto;
 	@Column(name = "NOMECLIENTE")
 	private String nomeCliente;
-	
+
 	@Column(name = "EMAILCLIENTE")
 	private String emailCliente;
-	
+
 	@Column(name = "dataenvio")
 	private Date dataEnvio;
-	
+
 	@Column(name = "opiniaoanalista")
 	private String opiniaoAnalista;
-	
+
 	@Column(name = "revisao")
 	private String revisao;
-	
+
 	@OneToMany(orphanRemoval = false, mappedBy = "roteiro", fetch = FetchType.LAZY)
 	private List<RoteiroAprovadores> RoteirosAprovadores;
 
-	
-
-	
-	
 }

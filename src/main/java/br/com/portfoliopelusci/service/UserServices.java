@@ -1,6 +1,5 @@
 package br.com.portfoliopelusci.service;
 
-
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +12,12 @@ import br.com.portfoliopelusci.repository.UserRepository;
 
 @Service
 public class UserServices implements UserDetailsService {
-	
+
 	private Logger logger = Logger.getLogger(UserServices.class.getName());
-	
+
 	@Autowired
 	UserRepository repository;
-	
+
 	public UserServices(UserRepository repository) {
 		this.repository = repository;
 	}

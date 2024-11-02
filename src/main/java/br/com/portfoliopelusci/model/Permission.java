@@ -1,6 +1,5 @@
 package br.com.portfoliopelusci.model;
 
-
 import java.io.Serializable;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -21,11 +20,12 @@ public class Permission implements GrantedAuthority, Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column
 	private String description;
-	
-	public Permission() {}
+
+	public Permission() {
+	}
 
 	@Override
 	public String getAuthority() {
